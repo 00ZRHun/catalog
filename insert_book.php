@@ -30,7 +30,7 @@
             $title = $_POST['title'];
             $price = $_POST['price'];
 
-            $query = "INSERT INTO catalogss(isbn, author, title, price) 
+            $query = "INSERT INTO catalogs(isbn, author, title, price) 
             VALUES ('$isbn', '$author', '$title', '$price')";
 
             $result = $conn->query($query);
@@ -48,11 +48,11 @@
 
     // TODO 5: Display the feedback back to user.
     if(!$result) die("Book are fail to be inserted -> $query");
-    else         echo "Good to Go";
+    // else         echo "Good to Go";
     }
 
     // TODO 6: Disconnecting from the database.
-    $conn->close;
+    $conn->close();
 
     ?>
 </body>

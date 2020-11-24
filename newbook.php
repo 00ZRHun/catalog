@@ -35,8 +35,8 @@
             </tr>
             <tr>
                 <!-- An input type of text box, named "price" with maxlength "7" and size "7". -->
-                <td>Price RM</td>
-                <td><input type="text" name="price" maxlength="7" size="7"></td>
+                <td>Price </td>
+                <td>RM<input type="text" name="price" maxlength="7" size="7"></td>
             </tr>
             <tr>
                 <!-- A submit button with the display text as "Register" -->
@@ -50,7 +50,8 @@
         $result = $conn->query($query);
 
         if(!$result)    die("Query Problem -> $query");
-        else            echo("Good to Go");
+        // else            echo("Good to Go");
+        else            echo "</br></br><b><h3>====== Book Entry Lists ======</h3></b>";
 
         $rows = $result->num_rows;
 
@@ -68,11 +69,15 @@
             // fetch_array(MYSLQI_NUM)
             $row = $result->fetch_array(MYSQLI_NUM);
 
-            echo "<pre>" . 
-                "isbn   :" . htmlspecialchars($row[0]) . "</br>" .
-                "author :" . htmlspecialchars($row[1]) . "</br>" .
-                "title  :" . htmlspecialchars($row[2]) . "</br>" .
-                "price  :" . htmlspecialchars($row[3]) . "</br>" .
+                
+            // echo $i+1;
+            echo "<pre>" .
+                // $i+1 .
+                ($i+1) . ")" . "</br>" .
+                "   isbn   :" . htmlspecialchars($row[0]) . "</br>" .
+                "   author :" . htmlspecialchars($row[1]) . "</br>" .
+                "   title  :" . htmlspecialchars($row[2]) . "</br>" .
+                "   price  :RM" . htmlspecialchars($row[3]) . "</br>" .
             "</pre>";
 
 

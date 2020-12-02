@@ -15,10 +15,15 @@
         $price = $_POST['price'];                  
 
         // TODO 2: Check and filter data coming from the user.
-        if(isset($_POST['isbn']) &&
-            isset($_POST['author']) &&
-            isset($_POST['title']) &&
-            isset($_POST['price'])) 
+        /* if(!empty($_POST['isbn']) &&
+            !empty($_POST['author']) &&
+            !empty($_POST['title']) &&
+            !empty($_POST['price'])) 
+            { */
+        if(isset($isbn) &&
+            isset($author) &&
+            isset($title) &&
+            isset($price)) 
             {
                 // TODO 3: Setup a connection to the appropriate database.
                 require_once "dbConnect.php";
@@ -35,8 +40,17 @@
                 // TODO 6: Disconnecting from the database.
                 $conn->close();
             }
-    ?>
+        else {
+            // Display the alert box  
+            echo "<script>alert('Please Fill in all the fields.')</script>";
 
+            // header("Location: http://localhost/catalog/newbook.php");
+        }
+
+        
+    ?>
+    
+    <br><br>
     <a href="newbook.php">Back</a>
 </body>
 </html>

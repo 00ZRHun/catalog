@@ -13,7 +13,7 @@
         $searchterm = $_POST['searchterm'];
 
         // TODO 2: Check and filter data coming from the user.
-        if(isset($_POST['searchtype']) && isset($_POST['searchterm'])) 
+        if(isset($searchtype) && isset($searchterm))
         {
 
             // TODO 3: Setup a connection to the appropriate database.

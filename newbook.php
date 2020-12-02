@@ -9,7 +9,6 @@
     <h1>New Book Entry</h1>
 
     <!-- A HTML form to allow user enters a new book. -->
-
     <!-- Send the form-data to a file named "insert_book.php" with the HTTP POST method. -->
     <form action="insert_book.php" method="post">
         <table border="0">
@@ -42,7 +41,7 @@
 
     <?php
         require_once "dbConnect.php";
-        
+
         $query = "SELECT * FROM catalogs ORDER BY isbn";
         $result = $conn->query($query);
 

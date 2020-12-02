@@ -9,11 +9,11 @@
     <h1>Book Search Results</h1>
     <?php
         // TODO 1: Create short variable names.
-        $searchtype = $_GET['searchtype'];
-        $searchterm = $_GET['searchterm'];
+        $searchtype = $_POST['searchtype'];
+        $searchterm = $_POST['searchterm'];
 
         // TODO 2: Check and filter data coming from the user.
-        if(isset($_GET['searchtype']) && isset($_GET['searchterm'])) 
+        if(isset($_POST['searchtype']) && isset($_POST['searchterm'])) 
         {
 
             // TODO 3: Setup a connection to the appropriate database.

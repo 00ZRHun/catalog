@@ -8,27 +8,54 @@
 <body>
     <h1>Book Search Results</h1>
     <?php
-    // TODO 1: Create short variable names.
+        // TODO 1: Create short variable names.
+        $searchtype = $_GET['searchtype'];
+        $searchterm = $_GET['searchterm'];
 
+        // TODO 2: Check and filter data coming from the user.
+        if(isset($_GET['searchtype']) && isset($_GET['searchterm'])) 
+        {
 
-    // TODO 2: Check and filter data coming from the user.
+            // TODO 3: Setup a connection to the appropriate database.
+            require_once "login.php";
+            $conn = new mysqli($hn, $un, $pw, $db);
 
+            // TODO 4: Query the database.
+            $query = "SELECT * FROM catalogs WHERE $searchtype = '$searchterm'";
 
-    // TODO 3: Setup a connection to the appropriate database.
+            // TODO 5: Retrieve the results.
+            $result = $conn->query($query);
 
+            // TODO 6: Display the results back to user.
+            if(!$result) echo "query -> $query";
+            else {
+                // if($rows = $result->num_rows>0){ // NOT WORKIGN
+                $rows = $result->num_rows;
+                if($rows>0){
+                    
+                    echo "<h3>$searchterm in $searchtype</h3><b><h3>====== Book Entry Lists ======</h3></b>";
+                    // echo $rows;
+                    
+                    for($i=0; $i<$rows; $i++) {
+                        $row = $result->fetch_array(MYSQLI_ASSOC);
 
-    // TODO 4: Query the database.
+                        echo "<pre>" . 
+                            ($i+1) . ")" . "<br>" .
+                            "   isbn   :" . htmlspecialchars($row['isbn']) . "<br>" . 
+                            "   author :". htmlspecialchars($row['author']) . "<br>" . 
+                            "   title  :" . htmlspecialchars($row['title']) . "<br>" . 
+                            "   price  :" . htmlspecialchars($row['price']) . "<br>" . 
+                        "</pre>";
+                    }
+                } else {
+                    echo "<h3>$searchterm in $searchtype</h3> Your search result is not found";
+                }
+            }
 
+            // TODO 7: Disconnecting from the database.
+            $conn->close();
 
-    // TODO 5: Retrieve the results.
-
-
-    // TODO 6: Display the results back to user.
-
-
-    // TODO 7: Disconnecting from the database.
-
-
+        }
     ?>
 </body>
 </html>

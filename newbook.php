@@ -1,9 +1,3 @@
-<?php
-    $query = file_get_contents('book.sql');
-    require_once "templates/dbConnect.php";
-    // echo $query;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +9,7 @@
     <h1>New Book Entry</h1>
 
     <!-- A HTML form to allow user enters a new book. -->
+
     <!-- Send the form-data to a file named "insert_book.php" with the HTTP POST method. -->
     <form action="insert_book.php" method="post">
         <table border="0">
@@ -46,7 +41,9 @@
     </form>
 
     <?php
-        $query = "SELECT * FROM catalogs";
+        require_once "dbConnect.php";
+        
+        $query = "SELECT * FROM catalogs ORDER BY isbn";
         $result = $conn->query($query);
 
         if(!$result)    die("Query Problem -> $query");
@@ -69,7 +66,6 @@
             // fetch_array(MYSLQI_NUM)
             $row = $result->fetch_array(MYSQLI_NUM);
 
-                
             // echo $i+1;
             echo "<pre>" .
                 // $i+1 .
@@ -79,13 +75,9 @@
                 "   title  :" . htmlspecialchars($row[2]) . "</br>" .
                 "   price  :RM" . htmlspecialchars($row[3]) . "</br>" .
             "</pre>";
-
-
         }
+        
+        $conn->close();
     ?>
-
-<?php
-    $conn->close();
-?>
 </body>
 </html>

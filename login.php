@@ -1,6 +1,6 @@
 <?php
     $hn = 'localhost';
-    $un = 'zrhun';
-    $pw = '#Hun8201#Hun8201';
+    $un = 'root';
+    $pw = '';
     $db = 'publications';
 ?>
